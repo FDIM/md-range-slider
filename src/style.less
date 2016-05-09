@@ -12,13 +12,14 @@
   top:0;
   width:100%;
   md-slider{
-    min-width: 16px;
-    ._md-track-container{
-      ._md-track{
-        background-color: @range-slider-highlight;
-        &._md-track-fill{
-          background-color: @range-slider-bg;
-        }
+    min-width: 0px;
+    ._md-thumb-container{
+      z-index: 10;
+    }
+    ._md-track{
+      background-color: @range-slider-highlight;
+      &._md-track-fill{
+        background-color: @range-slider-bg;
       }
     }
   }
@@ -29,7 +30,7 @@
   top:0;
   right:0px;
   md-slider{
-    min-width: 16px;
+    min-width: 0px;
     // Overwrite specific to range adaptation
     ._md-thumb-container {
       transition: -webkit-transform 0s linear;

@@ -4,6 +4,8 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var coveralls = require('gulp-coveralls');
 var cssmin = require('gulp-cssmin');
+var less = require('gulp-less');
+var path = require('path');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var karma = require('karma').server;
@@ -12,7 +14,7 @@ var tag_version = require('gulp-tag-version');
 var _package = JSON.parse(fs.readFileSync('./package.json'));
 var _coverage = 'coverage/**/lcov.info';
 var _scripts = 'src/**/*.js';
-var _styles = 'src/**/*.css';
+var _styles = 'src/**/*.less';
 var _dist = 'dist';
 var _script = _package.main.replace(_dist+'/','');
 var _style = _package.main.replace(_dist+'/','').replace('.js','.css');
@@ -20,7 +22,9 @@ var _browsers = ["PhantomJS"];
 
 gulp.task('build-css', function () {
   return gulp.src(_styles)
-    .pipe(concat(_style.toLowerCase()))
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less') ]
+    }))
     .pipe(gulp.dest(_dist))
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))

@@ -35,7 +35,16 @@
         lowerValue: "=lowerValue",
         upperValue: "=upperValue"
       },
-      templateUrl: 'range-slider/range-slider.tpl.html',
+      template: [
+        '<div class="range-slider-container">',
+          '<div class="range-slider-left">',
+            '<md-slider aria-label="upperValue" ng-model="lowerValue" min="{{min}}" max="{{lowerMax}}"></md-slider>',
+          '</div>',
+          '<div class="range-slider-right" ng-style="{width: upperWidth}">',
+            '<md-slider aria-label="upperValue" ng-model="upperValue" min="{{upperMin}}" max="{{max}}"></md-slider>',
+          '</div>',
+        '</div>'
+      ].join(''),
       controller: 'RangeSliderController'
     };
   });
