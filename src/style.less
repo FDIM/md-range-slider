@@ -1,0 +1,47 @@
+@range-slider-bg: rgb(158, 158, 158);
+@range-slider-highlight: rgb(61,68,80);
+
+.range-slider-container {
+  position:relative;
+  width:100%;
+  height:48px;
+}
+
+.range-slider-left {
+  position:absolute;
+  top:0;
+  width:100%;
+  md-slider{
+    min-width: 16px;
+    ._md-track-container{
+      ._md-track{
+        background-color: @range-slider-highlight;
+        &._md-track-fill{
+          background-color: @range-slider-bg;
+        }
+      }
+    }
+  }
+}
+
+.range-slider-right {
+  position:absolute;
+  top:0;
+  right:0px;
+  md-slider{
+    min-width: 16px;
+    // Overwrite specific to range adaptation
+    ._md-thumb-container {
+      transition: -webkit-transform 0s linear;
+      transition: transform 0s linear;
+    }
+    ._md-track-container{
+      ._md-track{
+        background-color: @range-slider-bg;
+        &._md-track-fill{
+          background-color: @range-slider-highlight;
+        }
+      }
+    }
+  }
+}
