@@ -3,6 +3,9 @@
 ;(function(module) {
   // source: https://gist.github.com/kuitos/89e8aa538f0a507bd682
   module.controller('RangeSliderController', ['$scope', function($scope){
+    if(!$scope.step){
+      $scope.step = 1;
+    }
     $scope.lowerMax = $scope.max - $scope.step;
     $scope.upperMin = $scope.lowerValue + $scope.step;
     if(!$scope.lowerValue || $scope.lowerValue<$scope.min){
@@ -38,10 +41,10 @@
       template: [
         '<div class="range-slider-container">',
           '<div class="range-slider-left">',
-            '<md-slider aria-label="upperValue" ng-model="lowerValue" min="{{min}}" max="{{lowerMax}}"></md-slider>',
+            '<md-slider aria-label="upperValue" step="{{step}}" ng-model="lowerValue" min="{{min}}" max="{{lowerMax}}"></md-slider>',
           '</div>',
           '<div class="range-slider-right" ng-style="{width: upperWidth}">',
-            '<md-slider aria-label="upperValue" ng-model="upperValue" min="{{upperMin}}" max="{{max}}"></md-slider>',
+            '<md-slider aria-label="upperValue" step="{{step}}" ng-model="upperValue" min="{{upperMin}}" max="{{max}}"></md-slider>',
           '</div>',
         '</div>'
       ].join(''),
