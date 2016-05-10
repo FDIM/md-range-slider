@@ -1,6 +1,6 @@
 {
   "name": "mdRangeSlider",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "dist/md-range-slider.js",
   "scripts": {
     "test": "gulp coverage"
