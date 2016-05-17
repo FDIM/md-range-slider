@@ -9,11 +9,16 @@
   <link rel="stylesheet" type="text/css" href="../dist/style.css">
 </head>
 <body>
-  <div layout>
+  <div layout="column">
     <div style="width:300px;margin:auto;" ng-controller="AppController">
       <h3>Filter by price</h3>
       <p>Selected range: {{lower|currency}}-{{upper|currency}}</p>
       <range-slider lower-value="lower" upper-value="upper" min-gap="2000" step="100" min="min" max="max" ></range-slider>
+    </div>
+	<div style="width:300px;margin:auto;" ng-controller="App2Controller">
+      <h3>Filter by age</h3>
+      <p>Selected range: {{lower}}-{{upper}}</p>
+      <range-slider lower-value="lower" upper-value="upper" min-gap="1" step="1" min="min" max="max" ></range-slider>
     </div>
   </div>
   <script>
@@ -23,6 +28,12 @@
       $scope.max = 200000;
       $scope.lower = 0;
       $scope.upper = 50000;
+    }]);
+	app.controller('App2Controller', ['$scope', function($scope){
+      $scope.min = 18;
+      $scope.max = 99;
+      $scope.lower = $scope.min;
+      $scope.upper = $scope.max;
     }]);
     angular.bootstrap(document, ['example']);
   </script>

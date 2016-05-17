@@ -21,7 +21,7 @@
 
     $scope.$watch('lowerValue',function(){
       $scope.upperMin = $scope.lowerValue + $scope.step;
-      $scope.upperWidth = ((($scope.max-($scope.lowerValue + $scope.step))/$scope.max) * 100) + "%";
+      $scope.upperWidth = ((($scope.max-($scope.lowerValue + $scope.step))/($scope.max-$scope.min)) * 100) + "%";
       if($scope.lowerValue > ($scope.upperValue - $scope.minGap) && $scope.upperValue < $scope.max) {
         $scope.upperValue = $scope.lowerValue + $scope.minGap;
       }
