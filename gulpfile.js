@@ -40,6 +40,11 @@ gulp.task('build', ['unit-test', 'build-css'], function () {
     .pipe(gulp.dest(_dist));
 });
 
+gulp.task('watch',['build'], function(){
+    gulp.watch('src/**/*', ['build']);
+    gulp.watch('tests/**/*', ['unit-test']);
+});
+
 gulp.task('unit-test', function (done) {
   var _opts = {
     configFile: __dirname + '/karma.conf.js',
