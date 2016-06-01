@@ -6,30 +6,42 @@
     if(!$scope.step){
       $scope.step = 1;
     }
-    $scope.lowerMax = $scope.max - $scope.step;
-    $scope.upperMin = $scope.lowerValue + $scope.step;
-    if(!$scope.lowerValue || $scope.lowerValue<$scope.min){
-      $scope.lowerValue = $scope.min;
-    }else{
-      $scope.lowerValue*=1;
+    $scope.$watchGroup(['min','max'],minMaxWatcher);
+    $scope.$watch('lowerValue',lowerValueWatcher);
+    
+    function minMaxWatcher() {
+      $scope.lowerMax = $scope.max - $scope.step;
+      $scope.upperMin = $scope.lowerValue + $scope.step;
+      
+      if(!$scope.lowerValue || $scope.lowerValue < $scope.min){
+        $scope.lowerValue = $scope.min;
+      }else{
+        $scope.lowerValue*=1;
+      }
+      if(!$scope.upperValue || $scope.upperValue > $scope.max){
+        $scope.upperValue = $scope.max;
+      }else{
+        $scope.upperValue*=1;
+      }
+      updateWidth();
     }
-    if(!$scope.upperValue || $scope.upperValue>$scope.max){
-      $scope.upperValue = $scope.min;
-    }else{
-      $scope.upperValue*=1;
-    }
-
-    $scope.$watch('lowerValue',function(){
+    
+    function lowerValueWatcher() {
       if($scope.lowerValue >= $scope.upperValue - $scope.step){
         $scope.lowerValue = $scope.upperValue - $scope.step;
         return;
       }
       $scope.upperMin = $scope.lowerValue + $scope.step;
+      
+      updateWidth();
+    }
+    
+    function updateWidth() {
       $scope.upperWidth = ((($scope.max-($scope.lowerValue + $scope.step))/($scope.max-$scope.min)) * 100) + "%";
       if($scope.lowerValue > ($scope.upperValue - $scope.minGap) && $scope.upperValue < $scope.max) {
         $scope.upperValue = $scope.lowerValue + $scope.minGap;
       }
-    });
+    }
   }]);
 
   module.directive('rangeSlider', function () {
