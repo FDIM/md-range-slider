@@ -1,6 +1,5 @@
-"use strict";
-
 ;(function(module) {
+  "use strict";
   // source: https://gist.github.com/kuitos/89e8aa538f0a507bd682
   module.controller('RangeSliderController', ['$scope', function($scope){
     if(!$scope.step){
@@ -8,11 +7,11 @@
     }
     $scope.$watchGroup(['min','max'],minMaxWatcher);
     $scope.$watch('lowerValue',lowerValueWatcher);
-    
+
     function minMaxWatcher() {
       $scope.lowerMax = $scope.max - $scope.step;
       $scope.upperMin = $scope.lowerValue + $scope.step;
-      
+
       if(!$scope.lowerValue || $scope.lowerValue < $scope.min){
         $scope.lowerValue = $scope.min;
       }else{
@@ -25,17 +24,17 @@
       }
       updateWidth();
     }
-    
+
     function lowerValueWatcher() {
       if($scope.lowerValue >= $scope.upperValue - $scope.step){
         $scope.lowerValue = $scope.upperValue - $scope.step;
         return;
       }
       $scope.upperMin = $scope.lowerValue + $scope.step;
-      
+
       updateWidth();
     }
-    
+
     function updateWidth() {
       $scope.upperWidth = ((($scope.max-($scope.lowerValue + $scope.step))/($scope.max-$scope.min)) * 100) + "%";
       if($scope.lowerValue > ($scope.upperValue - $scope.minGap) && $scope.upperValue < $scope.max) {
