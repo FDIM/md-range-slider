@@ -6,8 +6,12 @@
     if(!$scope.step){
       $scope.step = 1;
     }
+    if(!$scope.minGap){
+      $scope.minGap = $scope.step;
+    }
     $scope.$watchGroup(['min','max'],minMaxWatcher);
     $scope.$watch('lowerValue',lowerValueWatcher);
+    $scope.$watch('upperValue',upperValueWatcher);
 
     function minMaxWatcher() {
       $scope.lowerMax = $scope.max - $scope.step;
@@ -34,6 +38,12 @@
       $scope.upperMin = $scope.lowerValue + $scope.step;
 
       updateWidth();
+    }
+
+    function upperValueWatcher() {
+      if($scope.upperValue <= $scope.lowerValue + $scope.step){
+        $scope.upperValue = $scope.lowerValue + $scope.step;
+      }
     }
 
     function updateWidth() {
