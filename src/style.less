@@ -13,12 +13,12 @@
   width:100%;
   md-slider{
     min-width: 0px;
-    ._md-thumb-container{
+    .md-thumb-container{
       z-index: 10;
     }
-    ._md-track{
+    .md-track{
       background-color: @range-slider-highlight;
-      &._md-track-fill{
+      &.md-track-fill{
         background-color: @range-slider-bg;
       }
     }
@@ -32,15 +32,16 @@
   md-slider{
     min-width: 0px;
     // Overwrite specific to range adaptation
-    ._md-thumb-container {
+    .md-thumb-container {
       transition: -webkit-transform 0s linear;
       transition: transform 0s linear;
     }
-    ._md-track-container{
-      ._md-track{
+    .md-track-container{
+      .md-track{
         background-color: @range-slider-bg;
-        &._md-track-fill{
+        &.md-track-fill{
           background-color: @range-slider-highlight;
+          transition: none;
         }
       }
     }

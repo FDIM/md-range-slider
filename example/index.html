@@ -18,7 +18,7 @@
 	<div style="width:300px;margin:auto;" ng-controller="App2Controller">
       <h3>Filter by age</h3>
       <p>Selected range: {{lower}}-{{upper}}</p>
-      <range-slider lower-value="lower" upper-value="upper" min-gap="1" step="1" min="min" max="max" ></range-slider>
+      <range-slider lower-value="lower" upper-value="upper" min-gap="2" step="2" min="min" max="max" ></range-slider>
       <input type="number" placeholder="Min" ng-model="min"/>
       <input type="number" placeholder="Max" ng-model="max"/>
     </div>
@@ -37,7 +37,7 @@
       $scope.lower = $scope.min;
       $scope.upper = $scope.max;
     }]);
-    
+
     angular.bootstrap(document, ['example']);
   </script>
 </body>
