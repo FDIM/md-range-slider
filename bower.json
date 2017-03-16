@@ -1,7 +1,7 @@
 {
   "name": "mdRangeSlider",
   "main": "dist/md-range-slider.js",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "homepage": "https://github.com/FDIM/ng-md-range-slider.git",
   "authors": [
     "FDIM <domas.trijonis@gmail.com>"
