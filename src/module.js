@@ -55,25 +55,31 @@
   }]);
 
   module.directive('rangeSlider', function () {
+    function templateFactory(elem,attr){
+      var discrete = (attr.hasOwnProperty('mdDiscrete')) ? 'md-discrete={{mdDiscrete}}' :'';
+      return [
+        '<div class="range-slider-container">',
+          '<div class="range-slider-left">',
+            '<md-slider '+discrete+' aria-label="upperValue" step="{{step}}" ng-model="lowerValue" min="{{min}}" max="{{lowerMax}}"></md-slider>',
+          '</div>',
+          '<div class="range-slider-right" ng-style="{width: upperWidth}">',
+            '<md-slider '+discrete+' aria-label="upperValue" step="{{step}}" ng-model="upperValue" min="{{upperMin}}" max="{{max}}"></md-slider>',
+          '</div>',
+        '</div>'
+      ].join('');
+    }
+
     return {
       scope      : {
         max:'=',
         min:'=',
         minGap: '=',
         step:'=',
+        mdDiscrete: "=mdDiscrete",
         lowerValue: "=lowerValue",
         upperValue: "=upperValue"
       },
-      template: [
-        '<div class="range-slider-container">',
-          '<div class="range-slider-left">',
-            '<md-slider aria-label="upperValue" step="{{step}}" ng-model="lowerValue" min="{{min}}" max="{{lowerMax}}"></md-slider>',
-          '</div>',
-          '<div class="range-slider-right" ng-style="{width: upperWidth}">',
-            '<md-slider aria-label="upperValue" step="{{step}}" ng-model="upperValue" min="{{upperMin}}" max="{{max}}"></md-slider>',
-          '</div>',
-        '</div>'
-      ].join(''),
+      template: templateFactory ,
       controller: 'RangeSliderController'
     };
   });
